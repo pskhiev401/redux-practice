@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
-import routes from "./routes";
 import { Provider } from "react-redux";
 import "./App.css";
+import routes from "./routes";
 import store from "./store";
 
 class App extends Component {
@@ -10,9 +10,11 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <div>
+          <div className='apps'>
             <nav>
-              <div>Logo</div>
+            <Link to="/">
+              <img src='http://dynastyband.com/graphics/artist774.jpg'/>
+            </Link>
               <Link to="/">Home</Link>
               <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>

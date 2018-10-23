@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addPerson } from "../ducks/peopleReducer";
-import { getPeople } from "../ducks/peopleReducer";
+import { getPeople, addPerson } from "../ducks/peopleReducer";
 
 class Home extends Component {
   constructor() {
@@ -15,30 +14,33 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.getPeople();
+    // this.props.getPeople();
     this.setState({ arr: this.props.data });
   }
   nameHandler(e) {
     this.setState({ inputName: e });
   }
   ageHandler(e) {
-    this.setState({ inputName: e });
+    this.setState({ inputAge: e });
   }
   cityHandler(e) {
-    this.setState({ inputName: e });
+    this.setState({ inputCity: e });
   }
 
-  submitHandler() {
+  async submitHandler() {
     const { inputName, inputAge, inputCity } = this.state;
-    this.props.addPerson({
+    await this.props.addPerson({
       name: inputName,
       age: inputAge,
       city: inputCity
     });
+
+    await this.setState({ arr: this.props.data });
   }
 
   render() {
-    console.log(this.state.arr);
+    console.log(this.state);
+    console.log(this.props);
     let displayAllPeople = this.state.arr.map((e, i) => {
       return (
         <div key={i}>
@@ -55,7 +57,8 @@ class Home extends Component {
           placeholder="Enter Name"
           onChange={e => this.nameHandler(e.target.value)}
         />
-        <input type="number"
+        <input
+          type="number"
           placeholder="Enter Age"
           onChange={e => this.ageHandler(e.target.value)}
         />

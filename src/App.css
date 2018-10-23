@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.apps img {
+  width: 50px;
+  border-radius: 50%;
+}
+
 body {
   background: lightgoldenrodyellow;
   padding: 10px;
